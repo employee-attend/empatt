@@ -1,6 +1,5 @@
 <?php include_once 'view/front/includes/header.php'; ?>
 
-
 <body class="hold-transition login-page">
 <div class="login-box">
   	<div class="login-logo">
@@ -75,9 +74,7 @@ $(function() {
 });
 </script>
 
-
 <?php
-  
   include_once 'view/front/includes/footer.php'; 
 
  ?>
