@@ -42,7 +42,7 @@ class Login extends Connection
 					$_SESSION['admin']    = $row['id'];
 					$_SESSION['type']     = $row['administrattor'];
 
-					header('location: http://localhost/empatt/view/admin/index.php');
+					header('location: http://localhost/empattend/view/admin/index.php');
 				}
 
 				else{
