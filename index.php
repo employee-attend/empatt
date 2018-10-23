@@ -75,6 +75,7 @@ $(function() {
 </script>
 
 <?php
+	
   include_once 'view/front/includes/footer.php'; 
 
  ?>
