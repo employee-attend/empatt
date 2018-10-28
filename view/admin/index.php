@@ -1,4 +1,3 @@
-<?php include 'includes/session.php'; ?>
 <?php 
   //include '../timezone.php'; 
   $today = date('Y-m-d');
@@ -8,189 +7,6 @@
   }
 ?>
 <?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
-  	<?php //include 'includes/navbar.php'; ?>
-
- <!-- start navbar  -->
-
-  	<header class="main-header">
-    <!-- Logo -->
-    <a href="home.php" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b></b>ES</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Ehsan</b> Soft</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="assets/admin/images/blank.png<?php //echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"> shobuj islam<?php //echo $user['firstname'].' '.$user['lastname']; ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="assets/admin/images/blank.png <?php //echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
-
-                <p>
-                  <?php echo $user['firstname'].' '.$user['lastname']; ?>
-                  <small>Member since <?php echo date('M. Y', strtotime($user['created_on'])); ?></small>
-                </p>
-              </li>
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" id="admin_profile">Update</a>
-                </div>
-                <div class="pull-right">
-                  <a href="view/admin/login/logout.php" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
- <!-- end navbar  -->
-
-
- <!-- start profile modal  -->
-
-  <!-- Add -->
-<div class="modal fade" id="profile">
-    <div class="modal-dialog">
-        <div class="modal-content">
-          	<div class="modal-header">
-            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b>Admin Profile</b></h4>
-          	</div>
-          	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="profile_update.php?return=<?php echo basename($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
-          		  <div class="form-group">
-                  	<label for="username" class="col-sm-3 control-label">Username</label>
-
-                  	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="username" name="username" value="<?php echo $user['username']; ?>">
-                  	</div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Password</label>
-
-                    <div class="col-sm-9"> 
-                      <input type="password" class="form-control" id="password" name="password" value="<?php echo $user['password']; ?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                  	<label for="firstname" class="col-sm-3 control-label">Firstname</label>
-
-                  	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $user['firstname']; ?>">
-                  	</div>
-                </div>
-                <div class="form-group">
-                  	<label for="lastname" class="col-sm-3 control-label">Lastname</label>
-
-                  	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $user['lastname']; ?>">
-                  	</div>
-                </div>
-                <div class="form-group">
-                    <label for="photo" class="col-sm-3 control-label">Photo:</label>
-
-                    <div class="col-sm-9">
-                      <input type="file" id="photo" name="photo">
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label for="curr_password" class="col-sm-3 control-label">Current Password:</label>
-
-                    <div class="col-sm-9">
-                      <input type="password" class="form-control" id="curr_password" name="curr_password" placeholder="input current password to save changes" required>
-                    </div>
-                </div>
-          	</div>
-          	<div class="modal-footer">
-            	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-            	<button type="submit" class="btn btn-success btn-flat" name="save"><i class="fa fa-check-square-o"></i> Save</button>
-            	</form>
-          	</div>
-        </div>
-    </div>
-</div>
- <!-- end profile modal  -->
-
-  <?php //include 'includes/profile_modal.php'; ?>
-
-
-
-
-
-
-
-  	<?php //include 'includes/menubar.php'; ?>
-
- <!-- starts menubar  -->
-
-  	<aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="assets/admin/images/blank.png <?php //echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p> Shobuj islam<?php //echo $user['firstname'].' '.$user['lastname']; ?></p>
-          <a><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">REPORTS</li>
-        <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class="header">MANAGE</li>
-        
-        <li><a href="attendance.php"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>Employees</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="employee.php"><i class="fa fa-circle-o"></i> Employee List</a></li>
-            <li><a href="overtime.php"><i class="fa fa-circle-o"></i> Overtime</a></li>
-            <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Cash Advance</a></li>
-            <li><a href="schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
-          </ul>
-        </li>
-        <!-- <li><a href="deduction.php"><i class="fa fa-file-text"></i> Deductions</a></li>
-        <li><a href="position.php"><i class="fa fa-suitcase"></i> Positions</a></li>
-        <li class="header">PRINTABLES</li>
-        <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Payroll</span></a></li>
-        <li><a href="schedule_employee.php"><i class="fa fa-clock-o"></i> <span>Schedule</span></a></li> -->
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
- <!-- end menubar  -->
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -235,7 +51,7 @@
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
-            <div class="inner">12
+            <div class="inner"><h3>12</h3>
               <?php
                /* $sql = "SELECT * FROM employees";
                 $query = $conn->query($sql);
@@ -248,14 +64,14 @@
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
             </div>
-            <a href="employee.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="view/admin/employee/index.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
-            <div class="inner">67%
+            <div class="inner"><h3>67%</h3>
               <?php
                 /*$sql = "SELECT * FROM attendance where date='$today'";
                 $query = $conn->query($sql);
@@ -282,7 +98,7 @@
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
-            <div class="inner">8
+            <div class="inner"><h3>8</h3>
               <?php
                 /*$sql = "SELECT * FROM attendance WHERE date = '$today' AND status = 1";
                 $query = $conn->query($sql);
@@ -302,7 +118,7 @@
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
-            <div class="inner">4
+            <div class="inner"><h3>4</h3>
               <?php
                /* $sql = "SELECT * FROM attendance WHERE date = '$today' AND status = 0";
                 $query = $conn->query($sql);
