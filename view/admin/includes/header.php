@@ -251,10 +251,10 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">REPORTS</li>
-        <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class=""><a href="view/admin/index.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class="header">MANAGE</li>
         
-        <li><a href="attendance.php"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
+        <li><a href="view/admin/empattend/employee_attend.php"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i>
