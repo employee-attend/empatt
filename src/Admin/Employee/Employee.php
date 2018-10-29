@@ -133,11 +133,34 @@ class Employee extends Connection
 			die();
 		}
 	}
+
+	// employee photo update....
+	public function employee_photo_update(){
+		try {
+
+			$stmt = $this->con->prepare("update employees set 
+				photo=:photo
+				where id=:id
+				");
+			$stmt->bindValue(':photo', $this->image, PDO::PARAM_STR);
+			$stmt->bindValue(':id', $this->id, PDO::PARAM_STR);
+			$stmt->execute();
+			if($stmt){
+				$_SESSION['success'] = "Employee Image Updated Successfully";
+				echo "<script>window.location='index.php'</script>";
+			}
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e->getMessage()."<br>";
+			die();
+		}
+	}
+
 	//select all employee
 	public function employeeList(){
 		try {
 
-			$stmt = $this->con->prepare("SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id");
+			$stmt = $this->con->prepare("SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id where status=1 ");
 			$stmt->execute();
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			
@@ -172,6 +195,20 @@ class Employee extends Connection
 			
 		} catch (PDOException $e) {
 			echo "Error: ".$e->getMessage()."<br>";
+			die();
+		}
+	}
+
+	// employee entry and leave time show function
+	public function show_attend_leave_time(){
+		try {
+
+			$stmt = $this->con->prepare("SELECT *, employees.employee_id AS empid, attendance.id AS attid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id ORDER BY attendance.date DESC, attendance.time_in DESC");
+			$stmt->execute();
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e-getMessage()."<br>";
 			die();
 		}
 	}

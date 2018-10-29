@@ -1,10 +1,10 @@
 <?php 
 
 
-echo "<pre>";
+/*echo "<pre>";
 var_dump($_POST);
-var_dump($_FILES);
-die();
+var_dump($_FILES);*/
+//die();
 
 include_once '../../../vendor/autoload.php';
 
@@ -18,8 +18,8 @@ if(!empty($_FILES['photo'])){
 	$_POST['image'] = $helper->image_upload();
 }
 
-$data = $employee->set($_POST);
+$data = $employee->set($_POST)->employee_photo_update();
 
 
-echo "<pre>";
-var_dump($data);
+/*echo "<pre>";
+var_dump($data);*/

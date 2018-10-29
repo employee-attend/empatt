@@ -11,7 +11,7 @@
     }
     
     if(!isset($_SESSION['admin']) || trim($_SESSION['admin']) == ''){
-        header('location: index.php');
+        header('location: login/index.php');
     }
 
     $sql = "SELECT * FROM admin WHERE id = '".$_SESSION['admin']."'";
@@ -267,7 +267,7 @@
             <li><a href="view/admin/employee/index.php"><i class="fa fa-circle-o"></i> Employee List</a></li>
             <!-- <li><a href="view/admin/employee/overtime.php"><i class="fa fa-circle-o"></i> Overtime</a></li>
             <li><a href="view/admin/employee/cashadvance.php"><i class="fa fa-circle-o"></i> Cash Advance</a></li> -->
-            <li><a href="view/admin/employee/schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
+            <li><a href="view/admin/schedule/index.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
           </ul>
         </li>
         <!-- <li><a href="deduction.php"><i class="fa fa-file-text"></i> Deductions</a></li>
