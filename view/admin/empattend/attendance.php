@@ -6,7 +6,7 @@
 
 	$empatt = new Empattend();
 
-	$result = $empatt->set($_POST);//->attendEmployee();
+	$result = $empatt->set($_GET);//->attendEmployee();
 
 	echo "<pre>";
 	var_dump($result);

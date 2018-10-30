@@ -77,7 +77,8 @@ $data = $employee->show_attend_leave_time();
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){*/
                       foreach($data as $row){
-                      $status = ($row['status'])?'<span class="label label-warning pull-right">ontime</span>':'<span class="label label-danger pull-right">late</span>';
+                      $status = ($row['status']==1)?'<span class="label label-warning pull-right">ontime</span>':'<span class="label label-danger pull-right">late</span>';
+                      //if($row['status'] ==)
                       echo "
                         <tr>
                           <td class='hidden'></td>

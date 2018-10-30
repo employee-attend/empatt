@@ -156,11 +156,72 @@ class Employee extends Connection
 		}
 	}
 
+	//count employee number
+	public function count_employee(){
+		try {
+
+			$stmt = $this->con->prepare("select * from employees where delete_status=1 ");
+			$stmt->execute();
+			$stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->rowCount();
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e->getMessage()."<br>";
+			die();
+		}
+	}
+
+	//total attend today 
+	public function today_attend($today){
+		try {
+
+			$stmt = $this->con->prepare("select * from attendance where date=:date ");
+			$stmt->bindValue(':date', $today, PDO::PARAM_STR);
+			$stmt->execute();
+			$stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->rowCount();
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e->getMessage()."<br>";
+			die();
+		}
+	}
+	//total attend today 
+	public function today_ontime_attend($today){
+		try {
+
+			$stmt = $this->con->prepare("select * from attendance where date=:date and status=1 ");
+			$stmt->bindValue(':date', $today, PDO::PARAM_STR);
+			$stmt->execute();
+			$stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->rowCount();
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e->getMessage()."<br>";
+			die();
+		}
+	}
+	//total attend today 
+	public function today_late_attend($today){
+		try {
+
+			$stmt = $this->con->prepare("select * from attendance where date=:date and status=0 ");
+			$stmt->bindValue(':date', $today, PDO::PARAM_STR);
+			$stmt->execute();
+			$stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->rowCount();
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e->getMessage()."<br>";
+			die();
+		}
+	}
+
 	//select all employee
 	public function employeeList(){
 		try {
 
-			$stmt = $this->con->prepare("SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id where status=1 ");
+			$stmt = $this->con->prepare("SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id where delete_status=1 ");
 			$stmt->execute();
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			
@@ -209,6 +270,33 @@ class Employee extends Connection
 			
 		} catch (PDOException $e) {
 			echo "Error: ".$e-getMessage()."<br>";
+			die();
+		}
+	}
+
+	//for chart view....
+	public function count_ontime_chart($m, $and){
+		try {
+			$stmt = $this->con->prepare("SELECT * FROM attendance WHERE MONTH(date) = '$m' AND status = 1 $and");
+			$stmt->execute();
+			$stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->rowCount();
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e->getMessage()."<br>";
+			die();
+		}
+	}
+	//for chart view....
+	public function count_late_chart($m,$and){
+		try {
+			$stmt = $this->con->prepare("SELECT * FROM attendance WHERE MONTH(date) = '$m' AND status = 0 $and");
+			$stmt->execute();
+			$stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->rowCount();
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e->getMessage()."<br>";
 			die();
 		}
 	}

@@ -1,25 +1,18 @@
-$(document).ready(function(){
 
+<script type="text/javascript">
+$(function() {
   var interval = setInterval(function() {
     var momentNow = moment();
     $('#date').html(momentNow.format('dddd').substring(0,3).toUpperCase() + ' - ' + momentNow.format('MMMM DD, YYYY'));  
     $('#time').html(momentNow.format('hh:mm:ss A'));
   }, 100);
- });
 
-$(document).ready(function(){
   $('#attendance').submit(function(e){
     e.preventDefault();
     var attendance = $(this).serialize();
-
-    /*var employee = $("#employee").val();
-    var statusin   = $('#in').val();
-    var statusout = $('#out').val();*/
-    
-    alert('hi...');
     $.ajax({
       type: 'POST',
-      url: 'view/admin/empattend/attendance.php',
+      url: 'http://localhost/empattend/view/admin/empattend/attendance.php',
       data: attendance,
       dataType: 'json',
       success: function(response){
@@ -39,3 +32,4 @@ $(document).ready(function(){
   });
     
 });
+</script>

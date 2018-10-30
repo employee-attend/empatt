@@ -1,4 +1,23 @@
 <?php
+
+/*
+
+	include_once '../../../vendor/autoload.php';
+
+	use App\Admin\Empattend\Empattend;
+
+	$empatt = new Empattend();
+
+	$output = $empatt->set($_POST)->attendEmployee();
+
+		echo json_encode($output);
+
+	// echo "<pre>";
+	// var_dump($output);
+	//die();
+*/
+
+
 	if(isset($_POST['employee'])){
 		$output = array('error'=>false);
 

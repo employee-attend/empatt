@@ -75,4 +75,17 @@ class Login extends Connection
 			die();
 		}
 	}
+
+	public function admin_login(){
+		try {
+
+			$stmt = $this->con->prepare( "SELECT * FROM admin WHERE id = '".$_SESSION['admin']."'");
+			$stmt->execute();
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+			
+		} catch (PDOException $e) {
+			echo "Error: ".$e->getMessage()."<br>";
+			die();
+		}
+	}
 }

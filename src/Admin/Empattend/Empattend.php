@@ -33,18 +33,21 @@ class Empattend extends Connection
 		$status   = $this->status;
 
 		$sql = "SELECT * FROM employees WHERE employee_id = '$employee'";
-		$query = $conn->query($sql);
+		//$query = $conn->query($sql);
+		$query = $this->con->prepare($sql);
+		$query = $query->execute();
 
-		if($query->num_rows > 0){
-			$row = $query->fetch_assoc();
+		if($query->rowCount() > 0){
+			$row = $query->fetch(PDO::FETCH_ASSOC);
 			$id = $row['id'];
 
 			$date_now = date('Y-m-d');
 
 			if($status == 'in'){
 				$sql = "SELECT * FROM attendance WHERE employee_id = '$id' AND date = '$date_now' AND time_in IS NOT NULL";
-				$query = $conn->query($sql);
-				if($query->num_rows > 0){
+				$query = $this->con->prepare($sql);
+				$query = $query->execute();
+				if($query->rowCount() > 0){
 					$output['error'] = true;
 					$output['message'] = 'You have timed in for today';
 				}
@@ -53,12 +56,20 @@ class Empattend extends Connection
 					$sched = $row['schedule_id'];
 					$lognow = date('H:i:s');
 					$sql = "SELECT * FROM schedules WHERE id = '$sched'";
-					$squery = $conn->query($sql);
-					$srow = $squery->fetch_assoc();
+					//$squery = $conn->query($sql);
+					//$srow = $squery->fetch_assoc();
+
+					$query = $this->con->prepare($sql);
+					$srow = $query->execute();
+
 					$logstatus = ($lognow > $srow['time_in']) ? 0 : 1;
 					//
 					$sql = "INSERT INTO attendance (employee_id, date, time_in, status) VALUES ('$id', '$date_now', NOW(), '$logstatus')";
-					if($conn->query($sql)){
+
+					$query = $this->con->prepare($sql);
+					$stmt = $query->execute();
+
+					if($stmt){
 						$output['message'] = 'Time in: '.$row['firstname'].' '.$row['lastname'];
 					}
 					else{
@@ -69,13 +80,15 @@ class Empattend extends Connection
 			}
 			else{
 				$sql = "SELECT *, attendance.id AS uid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id WHERE attendance.employee_id = '$id' AND date = '$date_now'";
-				$query = $conn->query($sql);
-				if($query->num_rows < 1){
+				//$query = $conn->query($sql);
+				$query = $this->con->prepare($sql);
+				$query = $query->execute();
+				if($query->rowCount() < 1){
 					$output['error'] = true;
 					$output['message'] = 'Cannot Timeout. No time in.';
 				}
 				else{
-					$row = $query->fetch_assoc();
+					$row = $query->fetch(PDO::FETCH_ASSOC);
 					if($row['time_out'] != '00:00:00'){
 						$output['error'] = true;
 						$output['message'] = 'You have timed out for today';
@@ -83,19 +96,27 @@ class Empattend extends Connection
 					else{
 						
 						$sql = "UPDATE attendance SET time_out = NOW() WHERE id = '".$row['uid']."'";
-						if($conn->query($sql)){
+						$query = $this->con->prepare($sql);
+						$stmt = $query->execute();
+						if($stmt){
 							$output['message'] = 'Time out: '.$row['firstname'].' '.$row['lastname'];
 
 							$sql = "SELECT * FROM attendance WHERE id = '".$row['uid']."'";
-							$query = $conn->query($sql);
-							$urow = $query->fetch_assoc();
+							//$query = $conn->query($sql);
+							//$urow = $query->fetch_assoc();
+							$query = $this->con->prepare($sql);
+							$query = $query->execute();
+							$urow = $query->fetch(PDO::FETCH_ASSOC);
 
 							$time_in = $urow['time_in'];
 							$time_out = $urow['time_out'];
 
 							$sql = "SELECT * FROM employees LEFT JOIN schedules ON schedules.id=employees.schedule_id WHERE employees.id = '$id'";
-							$query = $conn->query($sql);
-							$srow = $query->fetch_assoc();
+							//$query = $conn->query($sql);
+							//$srow = $query->fetch_assoc();
+							$query = $this->con->prepare($sql);
+							$query = $query->execute();
+							$srow = $query->fetch(PDO::FETCH_ASSOC);
 
 							if($srow['time_in'] > $urow['time_in']){
 								$time_in = $srow['time_in'];
@@ -117,11 +138,13 @@ class Empattend extends Connection
 							}
 
 							$sql = "UPDATE attendance SET num_hr = '$int' WHERE id = '".$row['uid']."'";
-							$conn->query($sql);
+							//$conn->query($sql);
+							$query = $this->con->prepare($sql);
+							$query = $query->execute();
 						}
 						else{
 							$output['error'] = true;
-							$output['message'] = $conn->error;
+							$output['message'] = "hi, not found..."; //$conn->error;
 						}
 					}
 					
@@ -134,7 +157,7 @@ class Empattend extends Connection
 		}
 		
 	
-	echo json_encode($output);
+	return $output;
 
 			
 		} catch (PDOException $e) {
