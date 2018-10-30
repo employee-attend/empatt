@@ -52,7 +52,7 @@ $(function() {
     var attendance = $(this).serialize();
     $.ajax({
       type: 'POST',
-      url: 'attendance.php',
+      url: 'view/front/attend/attendance.php',
       data: attendance,
       dataType: 'json',
       success: function(response){
