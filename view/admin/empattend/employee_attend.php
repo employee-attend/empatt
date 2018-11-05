@@ -9,7 +9,18 @@ $employee = new Employee();
 
 $data = $employee->show_attend_leave_time();
 
+/*$date_now = date('Y-m-d');
+$id = '5';
 
+  $stmt = "select * from attendance where employee_id='$id' and date='$date_now' order by time_in DESC limit 2 ";
+        $stmt_data = $employee->time_in_last($stmt);
+        $time_in_last = $stmt_data['time_in'];
+        echo $time_in_last;
+
+        $sql = "UPDATE attendance SET time_out = NOW() WHERE id = '$id' and time_in='$time_in_last' ";
+        $stmt_ta = $employee->time_in_last($sql);
+
+*/
 ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -24,6 +35,7 @@ $data = $employee->show_attend_leave_time();
     <section class="content-header">
       <h1>
         Attendance
+       
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

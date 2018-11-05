@@ -44,6 +44,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <style type="text/css">
+    .login-page{
+     background-image: url("assets/front/imges/2.jpg");
+    
+     opacity: 0.8;
+     hover:0.1;
+      }
       .mt20{
         margin-top:20px;
       }

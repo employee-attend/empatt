@@ -52,6 +52,13 @@ class Employee extends Connection
 		return $this;
 	}
 
+	 //select data from database
+    public function time_in_last($query){
+        $result =$this->con->prepare($query);
+        $result->execute();
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
+
 	//insert employee data 
 	public function insert_employee(){
 		try {
