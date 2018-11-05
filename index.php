@@ -1,15 +1,46 @@
 <?php include_once 'view/front/includes/header.php'; ?>
 
+<style>
+  .login-page{
+     background-image: url("assets/front/imges/3.jpg");
+    
+     opacity: 0.8;
+     hover:0.1;
+      }
+        .login-box{
+          font-weight:0;
+          background-color:#fff;
+      }
+      .login-box-body{
+          background-color:#fff;
+      }
+</style>
+
 <body class="hold-transition login-page">
 <div class="login-box">
   	<div class="login-logo">
-  		<p id="date"></p>
+  		<p style="color:#000;" id="date"></p>
       <p id="time" class="bold"></p>
   	</div>
   
   	<div class="login-box-body">
-    	<h4 class="login-box-msg">Enter Employee ID</h4>
+    	<h4 style="color:blue;font-size:25px;" class="login-box-msg">Enter Employee ID</h4>
+      <?php 
 
+   /*  date_default_timezone_set("Asia/Dhaka");
+      $attend_time  =  date("h:i:a");
+      $attend_date  = date('Y-m-d');
+      $year         = date('Y');
+
+      echo date('G');
+      $hour = date('G');
+      $min = date('i');
+      echo $hour." ".$min;
+*/
+
+      //$sd = NOW();
+      //echo $sd;
+       ?>
     	<form id="attendance">
           <div class="form-group">
             <select class="form-control" name="status">
@@ -18,7 +49,7 @@
             </select>
           </div>
       		<div class="form-group has-feedback">
-        		<input type="text" class="form-control input-lg" id="employee" name="employee" required>
+        		<input type="text" class="form-control input-lg" id="employee" name="employee" placeholder="Enter employee id..." required>
         		<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
       		</div>
       		<div class="row">
