@@ -1,0 +1,64 @@
+body {
+     
+	 background-color:#F0F0F0;
+}
+.navbar-default{background-color:#ECA81D; 
+ 
+}
+. li a{color:#FFFFFF;}
+ .navbar-nav li a:hover{background:#99D205;}
+    
+  
+  
+ .navbar-default li a:hover{background:#ff8000;}
+ .image{float:left;}
+  
+ .jumbtron{
+ background-color:#007C00;
+ padding-top:30px;
+ padding-bottom:30px;
+  
+ }
+ .footer{
+background-color:red;
+padding-top:50px;
+padding-bottom:90px;
+margin-left:15px;
+margin-right:15px;
+ text-align:right;
+ 
+ }
+ .image{float:middle;
+ margin-left:15px;
+ margin-right:15px;
+ }
+  
+.booter{
+	background-color:black;
+padding-top:5px;
+padding-bottom:5px;
+margin-left:15px;
+margin-right:15px;
+ text-align:center;
+}
+.bani{
+text-align:justify;	
+	
+}
+.img-thumbnail{background-color:#C1A458;
+text-align:center;
+}
+.thumbnail{
+	text-align:justify;
+	margin-left:250px;
+	margin-right:250px;
+	background-color:#CB4B51;
+	font-family:arial;
+	padding-top:20px;
+	padding-right:30px;
+}
+.login{
+	margin-top:20px;
+	text-align:center;
+
+}
